@@ -10,8 +10,8 @@ public class PayrollCalculator {
         //Try catch catches errors and allows user to try again
         try { BufferedReader reader = new BufferedReader(new FileReader("employees.csv"));
             String line;
+            reader.readLine();
             while ((line = reader.readLine()) != null){
-                //System.out.println(line);
                 String[] tokens = line.split("\\|");
                 //change data type (Tokens are strings...parse data)
                 int employeeId = Integer.parseInt(tokens[0]);
@@ -20,9 +20,10 @@ public class PayrollCalculator {
                 double payRate = Double.parseDouble(tokens[3]);
 
                 Employee employee = new Employee(employeeId, name, hoursWorked, payRate);
-                System.out.print("ID: " + employee.getEmployeeId());
-                System.out.println("Name: " + employee.getName());
-                System.out.printf("Gross Pay: $%.2fn", employee.getGrossPay());
+
+                System.out.printf("%d|%s|%.2f%n",employee.getEmployeeId(), employee.getName(), employee.getGrossPay());
+
+
 
 
 
@@ -30,8 +31,9 @@ public class PayrollCalculator {
             }
 
         } catch (Exception e) {
-            System.out.println("Oops,an error has surfaced. Try again.");
+            System.out.println("Oops, an error has occurred. Please try again!");
         }
+
 
 
     }
